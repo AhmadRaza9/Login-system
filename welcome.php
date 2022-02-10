@@ -1,5 +1,5 @@
 <?php
-include "login_user.php";
+include "User_class.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

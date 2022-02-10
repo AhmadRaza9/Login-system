@@ -1,8 +1,8 @@
 <?php
-include "add_user.php";
+include "User_class.php";
 ?>
 <?php
-$addUser = new AddUser;
+$addUser = new User;
 $addUser->getData();
 ?>
 

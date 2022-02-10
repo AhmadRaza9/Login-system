@@ -1,8 +1,8 @@
 <?php
 
-include "login_user.php";
+include "User_class.php";
 
-$loginuser = new LoginUser;
+$loginuser = new User;
 $loginuser->UserLogin();
 $loginuser->inputErrors();
 ?>

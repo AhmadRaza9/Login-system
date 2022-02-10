@@ -1,4 +1,4 @@
-<?php include "view_all_users.php";?>
+<?php include "User_class.php";?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +10,7 @@
 <body>
 <h1>View All Users</h1>
 <?php
-$user = new ViewUsers();
+$user = new User();
 $user->ViewAllUsers();
 ?>
 </body>
