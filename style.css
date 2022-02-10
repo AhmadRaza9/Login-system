@@ -1,0 +1,46 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  font-size: 15px;
+}
+body {
+  margin: 0px;
+  background: lightgrey;
+  padding: 30px;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+input[type="text"],
+input[type="password"] {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+input[type="submit"] {
+  background: black;
+  color: white;
+  border: 1px solid black;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.form-group {
+  margin-bottom: 10px;
+  display: grid;
+  grid-gap: 5px;
+}
+
+.alert-danger {
+  background: white;
+  padding: 5px 10px;
+  width: 111px;
+  border: 1px solid red;
+  color: red;
+  margin-bottom: 10px;
+}
