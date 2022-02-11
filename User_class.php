@@ -119,12 +119,9 @@ class User
     {
         $database = new db;
         $connection = $database->connection();
-        $query = "SELECT * FROM users ";
-        $viewusers = mysqli_query($connection, $query);
-        if (!$viewusers) {
-            die("QUERY FAILED (Sign Up User )" . mysqli_error($connection));
-        }
-        while ($row = mysqli_fetch_array($viewusers)) {
+        $query = $database->AllselectQuery($connection, 'users');
+
+        while ($row = mysqli_fetch_array($query)) {
             $username = $row['username'];
             echo "<div>
                     <p>$username</p>
