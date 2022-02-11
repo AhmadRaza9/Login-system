@@ -1,6 +1,4 @@
-<?php
-include "User_class.php";
-?>
+<?php include "User_class.php";?>
 <?php
 $addUser = new User;
 $addUser->getData();

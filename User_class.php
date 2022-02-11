@@ -35,6 +35,7 @@ class User
         if (isset($_POST['submit'])) {
             $name = trim($_POST['name']);
             $password = trim($_POST['password']);
+
             if (strlen($name) > 6) {
                 echo "username maxmium length is 6";
                 return false;
