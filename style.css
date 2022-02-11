@@ -54,7 +54,7 @@ div.main_section {
 }
 .article {
   display: grid;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: 300px auto;
 }
 .header {
   background-color: white;
