@@ -89,3 +89,9 @@ nav ul li {
   font-style: italic;
   font-weight: 700;
 }
+
+.user_sec {
+  background-color: white;
+  margin-bottom: 10px;
+  padding: 10px;
+}

@@ -132,8 +132,8 @@ class User
 
         while ($row = mysqli_fetch_array($query)) {
             $username = $row['username'];
-            echo "<div>
-                    <p>$username</p>
+            echo "<div class='user_sec'>
+                    <p class='user_name'>$username</p>
                  </div>";
         }
 
