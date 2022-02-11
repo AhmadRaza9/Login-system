@@ -29,4 +29,15 @@ class db
         return $connection;
     }
 
+    public function AllselectQuery($connection, $rowname)
+    {
+        $query = "SELECT * FROM $rowname";
+        $result = mysqli_query($connection, $query);
+        if (!$result) {
+            die("QUERY FAILED article class " . mysqli_error($connection));
+        }
+
+        return $result;
+    }
+
 }

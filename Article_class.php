@@ -6,15 +6,12 @@ class Articles
 {
     public function ViewAllArticles()
     {
+
         $database = new db;
         $connection = $database->connection();
+        $query = $database->AllselectQuery($connection, 'articles');
 
-        $query = "SELECT * FROM articles ";
-        $allArticles = mysqli_query($connection, $query);
-        if (!$allArticles) {
-            die("QUERY FAILED" . mysqli_error($connection));
-        }
-        while ($row = mysqli_fetch_array($allArticles)) {
+        while ($row = mysqli_fetch_array($query)) {
             $article_id = $row['id'];
             $title = $row['title'];
             $subject = $row['subject'];
