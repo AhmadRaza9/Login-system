@@ -22,6 +22,7 @@ class Articles
                         <p>$subject</p>
                         <a href='?delete=$article_id'>Delete</a>
                         <a href='edit_article.php?edit=$article_id'>Edit</a>
+                        <a href='article.php?id=$article_id'>View</a>
                     </div>
                     <div class='article_img'>
                         <img src='images/$image' alt=''>
@@ -152,6 +153,36 @@ class Articles
                 die("QUERY FAILED " . mysqli_error($connection));
             }
 
+        }
+    }
+
+    public function seeSingleArticle()
+    {
+        $database = new db;
+        $connection = $database->connection();
+
+        if (isset($_GET['id'])) {
+            $article_id = $_GET['id'];
+            $query = "SELECT * FROM articles WHERE id = $article_id ";
+            $result = mysqli_query($connection, $query);
+            if (!$result) {
+                die("QUERY FAILED " . mysqli_error($connection));
+            }
+            while ($row = mysqli_fetch_assoc($result)) {
+                $title = $row['title'];
+                $subject = $row['subject'];
+                $image = $row['image'];
+            }
+            echo "
+              <div class='article_sec'>
+                <div class='img'>
+                    <img src='images/$image' alt='' >
+                </div>
+                <div class='body'>
+                <h4>$title</h4>
+                <p>$subject</p>
+                </div>
+              </div>";
         }
     }
 }
