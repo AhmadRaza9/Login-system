@@ -55,7 +55,8 @@ class Articles
             if (!$result) {
                 die("QUERY FAILED " . mysqli_error($connection));
             }
-            header("location: articles.php");
+            $database->redirect('articles.php');
+
         }
 
     }
@@ -67,9 +68,9 @@ class Articles
 
         if (isset($_GET['delete'])) {
             $article_id = $_GET['delete'];
-            $query = "DELETE FROM articles WHERE id = $article_id ";
-            $result = mysqli_query($connection, $query);
-            header("location: articles.php");
+
+            $query = $database->deleteById($connection, 'articles', $article_id);
+            $database->redirect('articles.php');
         }
 
     }

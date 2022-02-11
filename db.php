@@ -34,10 +34,26 @@ class db
         $query = "SELECT * FROM $rowname";
         $result = mysqli_query($connection, $query);
         if (!$result) {
-            die("QUERY FAILED article class " . mysqli_error($connection));
+            die("QUERY FAILED " . mysqli_error($connection));
         }
 
         return $result;
+    }
+
+    public function deleteById($connection, $rowname, $id)
+    {
+        $query = "DELETE FROM $rowname WHERE id = $id ";
+        $result = mysqli_query($connection, $query);
+        if (!$result) {
+            die("QUERY FAILED " . mysqli_error($connection));
+        }
+
+        return $result;
+    }
+
+    public function redirect($location)
+    {
+        header("location: $location");
     }
 
 }
