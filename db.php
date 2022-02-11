@@ -6,10 +6,7 @@ class db
     private $password;
     private $dbname;
 
-    // public function __construct()
-    // {
-    //     $this->connection();
-    // }
+
 
     public function connection()
     {

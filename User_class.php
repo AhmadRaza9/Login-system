@@ -26,9 +26,6 @@ class User
                 }
                 echo "User Successfully Added";
             }
-            // else {
-            //     echo "nothing";
-            // }
 
         }
     }
@@ -46,6 +43,17 @@ class User
                 echo "username minimum length is 4 ";
                 return false;
             }
+            if (strlen($password) > 6) {
+                echo "password maxmium length is 6";
+                return false;
+
+            }
+            if (strlen($password) < 4) {
+                echo "password minimum length is 4";
+                return false;
+
+            }
+
         }
         return true;
     }
@@ -75,7 +83,7 @@ class User
                 if ($db_name == $name && password_verify($password, $db_password)) {
                     $_SESSION['username'] = $db_name;
                     $_SESSION['password'] = $db_password;
-                    header("location: /welcome.php");
+                    $database->redirect('/welcome.php');
 
                 } else {
                     return false;
