@@ -10,10 +10,13 @@
 </head>
 <body>
 <h1>View All Users</h1>
-<?php
+<div class="user_section">
+
+    <?php
 $user = new User();
 $user->ViewAllUsers();
 $user->deleteUser();
 ?>
+</div>
 </body>
 </html>
