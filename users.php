@@ -13,6 +13,7 @@
 <?php
 $user = new User();
 $user->ViewAllUsers();
+$user->deleteUser();
 ?>
 </body>
 </html>

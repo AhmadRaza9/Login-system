@@ -136,7 +136,8 @@ class User
             $username = $row['username'];
             echo "<div class='user_sec'>
                     <p class='user_name'>$username</p>
-                    <a href='edit_user.php?edit=$user_id'>Edit</a>
+                    <a class='edit_user' href='edit_user.php?edit=$user_id'>Edit</a>
+                    <a class='delete_user' href='?delete=$user_id'>Delete</a>
                  </div>";
         }
 
@@ -215,6 +216,19 @@ class User
 
         }
 
+    }
+
+    public function deleteUser()
+    {
+        $database = new db;
+        $connection = $database->connection();
+
+        if (isset($_GET['delete'])) {
+            $user_id = $_GET['delete'];
+            $query = "DELETE FROM users WHERE id = $user_id ";
+            $result = mysqli_query($connection, $query);
+            header("location: users.php");
+        }
     }
 
 }
