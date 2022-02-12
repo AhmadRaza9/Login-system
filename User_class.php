@@ -132,10 +132,75 @@ class User
         $query = $database->AllselectQuery($connection, 'users');
 
         while ($row = mysqli_fetch_array($query)) {
+            $user_id = $row['id'];
             $username = $row['username'];
             echo "<div class='user_sec'>
                     <p class='user_name'>$username</p>
+                    <a href='edit_user.php?edit=$user_id'>Edit</a>
                  </div>";
+        }
+
+    }
+
+    public function editUser()
+    {
+        $database = new db;
+        $connection = $database->connection();
+
+        if (isset($_GET['edit'])) {
+            $user_id = $_GET['edit'];
+            $query = "SELECT * FROM users WHERE id = $user_id ";
+            $result = mysqli_query($connection, $query);
+            if (!$result) {
+                die("QUERY FAIELD " . mysqli_error($connection));
+            }
+            while ($row = mysqli_fetch_assoc($result)) {
+                $db_username = $row['username'];
+                $db_password = $row['password'];
+                echo "
+                    <form action='' method='POST'>
+                        <div class='form-group'>
+                            <label for=''>Username</label>
+                            <input type='text' name='username' placeholder='Enter Title' required value='$db_username'>
+                        </div>
+                        <div class='form-group'>
+                            <label for=''>User Password</label>
+                            <input type='password' name='password' placeholder='Enter Subject' required value='$db_password'>
+                        </div>
+                        <input type='submit' name='update' value='Update'>
+                        <a href='users.php'>View</a>
+                    </form>
+                ";
+            }
+        }
+    }
+
+    public function UpdateUser()
+    {
+        $database = new db;
+        $connection = $database->connection();
+
+        if (isset($_POST['update'])) {
+            $user_id = $_GET['edit'];
+            $username = trim($_POST['username']);
+            $password = trim($_POST['password']);
+
+            $username = mysqli_real_escape_string($connection, $username);
+            $password = mysqli_real_escape_string($connection, $password);
+
+            $password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
+
+            $query = "UPDATE users SET ";
+            $query .= "username = '{$username}', ";
+            $query .= "password = '{$password}' ";
+            $query .= "WHERE id = {$user_id}";
+
+            $update_user = mysqli_query($connection, $query);
+
+            if (!$update_user) {
+                die("QUERY FAILED " . mysqli_error($connection));
+            }
+
         }
 
     }
