@@ -1,5 +1,6 @@
 <?php
 include "User_class.php";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +22,12 @@ include "User_class.php";
 
         </ul>
     </nav>
-    <h1>Welcome</h1>
+    <h1>Welcome  <?php
+if (isset($_SESSION['username'])) {
+    echo $_SESSION['username'];
+
+}
+?></h1>
     <img class="welcome_image" src="images/welcome.jpg" alt="">
 </div>
 </body>

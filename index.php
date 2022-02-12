@@ -18,7 +18,7 @@ $addUser->getData();
 <body>
     <section class="main">
         <div class="form">
-            <form action="" method="POST">
+            <form action="" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="">Username</label>
                     <input type="text" name="name" placeholder="Enter Username" required>
