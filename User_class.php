@@ -163,9 +163,10 @@ class User
                             <label for=''>Username</label>
                             <input type='text' name='username' placeholder='Enter Title' required value='$db_username'>
                         </div>
-                        <div class='form-group'>
+                        <p class='enter_new_password'>Enter New Password</p>
+                        <div class='form-group hidden password'>
                             <label for=''>User Password</label>
-                            <input type='password' name='password' placeholder='Enter New Password' required value=''>
+                            <input type='password' name='password' placeholder='Enter New Password'>
                         </div>
                         <input type='submit' name='update' value='Update'>
                     </form>
@@ -187,8 +188,19 @@ class User
             $username = mysqli_real_escape_string($connection, $username);
             $password = mysqli_real_escape_string($connection, $password);
 
-            $password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
+            $query = "SELECT * FROM users WHERE id = $user_id ";
+            $result = mysqli_query($connection, $query);
 
+            while ($row = mysqli_fetch_assoc($result)) {
+                $db_password = $row['password'];
+            }
+
+            if (empty($_POST['password'])) {
+                $password = $db_password;
+            }
+            if (!empty($_POST['password'])) {
+                $password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
+            }
             $query = "UPDATE users SET ";
             $query .= "username = '{$username}', ";
             $query .= "password = '{$password}' ";

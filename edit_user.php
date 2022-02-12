@@ -16,6 +16,17 @@ $user->UpdateUser();
 <body>
 <?php $user->editUser();?>
 
+<script>
+
+$enterNewPassword = document.querySelector('.enter_new_password');
+$passField = document.querySelector('.password');
+
+$enterNewPassword.addEventListener('click', e => {
+    $passField.classList.remove('hidden');
+    $enterNewPassword.classList.add('hidden');
+});
+
+</script>
 
 </body>
 </html>
