@@ -165,10 +165,9 @@ class User
                         </div>
                         <div class='form-group'>
                             <label for=''>User Password</label>
-                            <input type='password' name='password' placeholder='Enter Subject' required value='$db_password'>
+                            <input type='password' name='password' placeholder='Enter New Password' required value=''>
                         </div>
                         <input type='submit' name='update' value='Update'>
-                        <a href='users.php'>View</a>
                     </form>
                 ";
             }
@@ -200,6 +199,7 @@ class User
             if (!$update_user) {
                 die("QUERY FAILED " . mysqli_error($connection));
             }
+            header("location: users.php");
 
         }
 
