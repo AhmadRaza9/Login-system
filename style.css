@@ -7,14 +7,37 @@
 body {
   margin: 0px;
   background: lightgrey;
-  padding: 30px;
+}
+header {
+  background: black;
+  padding: 20px;
+  margin-bottom: 50px;
+}
+header nav ul li a {
+  color: white;
+}
+header nav ul {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
+header nav ul li {
+  padding-right: 10px;
+  list-style: none;
+}
+footer {
+  margin-top: 20px;
+  background: black;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
 section {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  height: 73.7vh;
 }
 
 input[type="text"],
@@ -65,17 +88,6 @@ div.main_section {
 }
 .article_img img {
   width: 100%;
-}
-
-nav ul {
-  display: flex;
-  margin-bottom: 20px;
-  justify-content: center;
-}
-
-nav ul li {
-  padding-right: 10px;
-  list-style: none;
 }
 
 .welcome_image {
