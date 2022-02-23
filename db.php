@@ -1,10 +1,9 @@
 <?php
+
+require_once "config.php";
 class db
 {
-    private $servername;
-    private $username;
-    private $password;
-    private $dbname;
+
     public $connection;
 
     public function __construct()
@@ -14,17 +13,13 @@ class db
 
     public function connection()
     {
-        $this->servername = 'localhost';
-        $this->username = 'root';
-        $this->password = 'root';
-        $this->dbname = 'phpoop';
 
-        $connection = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
-        if (!$connection) {
-            die("Connection failed: " . mysqli_error($connection));
+        $this->connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        if ($this->connection->connect_errno) {
+            die("DataBase Connection Failed Badly " . $this->connection->connect_error);
         }
 
-        return $connection;
+        return $this->connection;
     }
 
     public function AllselectQuery($connection, $rowname)

@@ -62,7 +62,7 @@ class Articles
 
     public function deleteArticle()
     {
-        $database = new db;
+        global $database;
         $connection = $database->connection();
 
         if (isset($_GET['delete'])) {
