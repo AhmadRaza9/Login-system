@@ -7,7 +7,7 @@ class Articles
     public function ViewAllArticles()
     {
 
-        $database = new db;
+        global $database;
         $connection = $database->connection();
         $query = $database->AllselectQuery($connection, 'articles');
 
@@ -40,7 +40,7 @@ class Articles
 
     public function AddArtilce()
     {
-        $database = new db;
+        global $database;
         $connection = $database->connection();
 
         if (isset($_POST['add'])) {
@@ -50,13 +50,10 @@ class Articles
             $article_image_temp = $_FILES['image']['tmp_name'];
             move_uploaded_file($article_image_temp, "images/$article_image");
 
-            $query = "INSERT INTO articles(title, subject, image) ";
-            $query .= "VALUES('$title', '$subject', '$article_image')";
+            $sql = "INSERT INTO articles(title, subject, image) ";
+            $sql .= "VALUES('$title', '$subject', '$article_image')";
 
-            $result = mysqli_query($connection, $query);
-            if (!$result) {
-                die("QUERY FAILED " . mysqli_error($connection));
-            }
+            $database->query($connection, $sql);
             $database->redirect('articles.php');
 
         }
@@ -85,10 +82,8 @@ class Articles
         if (isset($_GET['edit'])) {
             $article_id = $_GET['edit'];
             $query = "SELECT * FROM articles WHERE id = $article_id ";
-            $result = mysqli_query($connection, $query);
-            if (!$result) {
-                die("QUERY FAIELD " . mysqli_error($connection));
-            }
+            $result = $database->query($connection, $query);
+
             while ($row = mysqli_fetch_assoc($result)) {
                 $db_title = $row['title'];
                 $db_subject = $row['subject'];
@@ -147,11 +142,7 @@ class Articles
             $query .= "image = '{$image}' ";
             $query .= "WHERE id = {$article_id}";
 
-            $update_article = mysqli_query($connection, $query);
-
-            if (!$update_article) {
-                die("QUERY FAILED " . mysqli_error($connection));
-            }
+            $database->query($connection, $query);
 
         }
     }
@@ -163,11 +154,10 @@ class Articles
 
         if (isset($_GET['id'])) {
             $article_id = $_GET['id'];
+
             $query = "SELECT * FROM articles WHERE id = $article_id ";
-            $result = mysqli_query($connection, $query);
-            if (!$result) {
-                die("QUERY FAILED " . mysqli_error($connection));
-            }
+            $result = $database->query($connection, $query);
+
             while ($row = mysqli_fetch_assoc($result)) {
                 $title = $row['title'];
                 $subject = $row['subject'];

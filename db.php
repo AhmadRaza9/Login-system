@@ -5,8 +5,12 @@ class db
     private $username;
     private $password;
     private $dbname;
+    public $connection;
 
-
+    public function __construct()
+    {
+        $this->connection();
+    }
 
     public function connection()
     {
@@ -19,9 +23,6 @@ class db
         if (!$connection) {
             die("Connection failed: " . mysqli_error($connection));
         }
-        // else {
-        //     echo "Connected";
-        // }
 
         return $connection;
     }
@@ -53,4 +54,21 @@ class db
         header("location: $location");
     }
 
+    public function query($connection, $sql)
+    {
+        $result = mysqli_query($connection, $sql);
+        $this->confirm_query($result);
+        return $result;
+
+    }
+
+    public function confirm_query($result)
+    {
+        if (!$result) {
+            die("QUERY FAILED" . mysqli_error($this->connection));
+        }
+    }
+
 }
+
+$database = new db();
